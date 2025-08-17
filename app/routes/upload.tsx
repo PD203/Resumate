@@ -7,6 +7,10 @@ import {convertPdfToImage} from "~/lib/pdf2img";
 import {generateUUID} from "~/lib/utils";
 import {prepareInstructions} from "../../constants";
 
+export const meta = () => ([
+    { title: 'Resumate | Upload ' },
+])
+
 const Upload = () => {
     const { auth, isLoading, fs, ai, kv } = usePuterStore();
     const navigate = useNavigate();
@@ -79,7 +83,7 @@ const Upload = () => {
     }
 
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+        <main className="bg-[#F5F5F5]">
             <Navbar />
 
             <section className="main-section">
@@ -113,7 +117,7 @@ const Upload = () => {
                                 <FileUploader onFileSelect={handleFileSelect} />
                             </div>
 
-                            <button className="primary-button" type="submit">
+                            <button className="primary-button px-6 py-4" type="submit">
                                 Analyze Resume
                             </button>
                         </form>

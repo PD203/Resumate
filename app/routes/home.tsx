@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resumind" },
+    { title: "Resumate" },
     { name: "description", content: "Smart feedback for your dream job!" },
   ];
 }
@@ -39,11 +39,11 @@ export default function Home() {
     loadResumes()
   }, []);
 
-  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+  return <main className="bg-[#F5F5F5]">
     <Navbar />
 
     <section className="main-section">
-      <div className="page-heading py-16">
+      <div className="page-heading py-5 sm:py-12 md:py-16 lg:py-20 xl:py-24">
         <h1>Track Your Applications & Resume Ratings</h1>
         {!loadingResumes && resumes?.length === 0 ? (
             <h2>No resumes found. Upload your first resume to get feedback.</h2>

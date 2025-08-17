@@ -53,6 +53,7 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
                     <div className="text-xl font-semibold pt-4">{score}/100</div>
+                    <title>ATS Score</title>
                 </div>
             </div>
         </div>

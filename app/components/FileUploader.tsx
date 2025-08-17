@@ -1,6 +1,7 @@
 import {useState, useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { formatSize } from '../lib/utils'
+import { FaFilePdf } from "react-icons/fa";
 
 interface FileUploaderProps {
     onFileSelect?: (file: File | null) => void;
@@ -54,7 +55,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                     ): (
                         <div>
                             <div className="mx-auto w-16 h-16 flex items-center justify-center mb-2">
-                                <img src="/icons/info.svg" alt="upload" className="size-20" />
+                                <FaFilePdf  className="size-18" />
                             </div>
                             <p className="text-lg text-gray-500">
                                 <span className="font-semibold">

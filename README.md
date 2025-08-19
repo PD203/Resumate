@@ -1,91 +1,88 @@
-AI Resume Analyzer
-📋 Table of Contents
+# 📄 Resumate – AI ATS Resume Analyzer  
 
-✨ Introduction
+Resumate is a web application that helps job seekers calculate their **ATS (Applicant Tracking System) score** by analyzing their resume against a **company’s Job Title & Job Description**.  
 
-⚙️ Tech Stack
+With **AI-powered feedback**, it not only provides a score but also highlights missing skills, keywords, and structural improvements — helping you **optimize your resume for recruiters and ATS bots**.  
 
-🔋 Features
+🔗 **Live Demo**: https://resumate-rosy.vercel.app/
 
-🤸 Workflow
+---
 
-📦 Authentication & Storage
+## 🛠️ Built With  
 
-🚀 Inspired By
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E)  
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)  
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)  
+![Puter.js](https://img.shields.io/badge/Puter.js-000000?style=for-the-badge&logo=cloudflare&logoColor=white)  
+![Zustand](https://img.shields.io/badge/Zustand-FFB86C?style=for-the-badge&logo=zustand&logoColor=black)  
 
-✨ Introduction
+- **React + Vite** → Frontend framework & build tool  
+- **TypeScript** → Type safety and scalability  
+- **Tailwind CSS** → Modern, responsive UI design  
+- **Puter.js** → Authentication, file storage, AI feedback, database (serverless backend)  
+- **Zustand** → State management  
+- **React Router v7** → Navigation & data loaders  
 
-The AI Resume Analyzer is a web application built with React, React Router, and Puter.js. It allows users to upload resumes, get AI-powered feedback, and receive ATS scores tailored to specific job descriptions. The project emphasizes a modern, reusable UI, real-time analysis, and serverless storage with Puter.js.
+---
 
-⚙️ Tech Stack
+## ✨ Features  
 
-React – UI library for building reusable components.
+✔ Sign in with **Puter account**  
+✔ Upload **resume (PDF)** securely  
+✔ Enter **Company Name, Job Title & Job Description**  
+✔ AI calculates **ATS Score** and provides **feedback JSON**  
+✔ Resume preview + stored history  
+✔ Missing keywords & improvement suggestions  
+✔ Clean & responsive UI  
 
-React Router v7 – Powerful routing with nested routes and data loaders.
+---
 
-Puter.js – Serverless SDK for auth, storage, database, and AI services.
+## 📸 How to Use  
 
-Tailwind CSS – Utility-first CSS for responsive design.
+### 1️⃣ Login with Puter  
+<img src="./resuAuth.JPG" alt="Login Screenshot" width="700"/>  
 
-TypeScript – Strongly-typed JavaScript for better tooling and maintainability.
+---
 
-Vite – Modern build tool with instant HMR.
+### 2️⃣ Upload Resume  
+<img src="./resu1.JPG" alt="Upload Resume Screenshot" width="700"/>  
 
-Zustand – Minimal state management with global store support.
+---
 
-🔋 Features
+### 3️⃣ Enter Company Details & JD  
+<img src="./resu2.JPG" alt="Job Description Screenshot" width="700"/>  
 
-Authentication – Seamless login using Puter.js without custom backend.
+---
 
-Resume Upload & Storage – Store resumes (PDF) and preview images securely.
+### 4️⃣ Get ATS Score & Feedback  
+<img src="./resu3.JPG" alt="ATS Score Screenshot" width="700"/>  
 
-AI Resume Matching – Get ATS scores and detailed, structured AI feedback.
+---
 
-Reusable Modern UI – Clean, responsive components built with Tailwind CSS.
+### 5️⃣ Resume History & Tracking  
+<img src="./resu.JPG" alt="Resume History Screenshot" width="700"/>  
 
-Cross-Device Compatibility – Works smoothly across all screen sizes.
+---
 
-Code Reusability & Architecture – Modular and maintainable codebase.
+## 🔄 Workflow  
 
-🤸 Workflow
+1. User logs in with **Puter Auth**  
+2. Uploads resume (stored in **puter.fs**)  
+3. Enters company name, job title, and job description  
+4. Resume + JD sent to **puter.ai.feedback()** → generates ATS score & JSON feedback  
+5. Metadata, score, and feedback stored in **puter.kv**  
+6. User can view results & history in dashboard  
 
-Upload & Input – User provides optional details (Company Name, Job Title, Job Description) and uploads a resume (PDF).
+---
 
-Processing – PDF is uploaded to puter.fs, a PNG preview is generated, and metadata is stored in puter.kv.
+## 🙌 Inspiration  
 
-AI Analysis – Resume is analyzed via ai.feedback(), returning ATS score + structured feedback JSON.
+This project was inspired by **JavaScript Mastery’s real-world app tutorials**, which focus on building modern, production-ready full-stack applications.  
+A big thanks to the open-source community for ideas and support! ❤️  
 
-Store & Redirect – Feedback is saved in puter.kv, and the user is redirected to the results page.
+---
 
-Display Results – Preview of the resume and AI feedback (Summary, ATS, Details, Score Breakdown) is shown.
+## ⭐ Support  
 
-Wipe (Dev Only) – /wipe route allows clearing all stored resumes and metadata during development.
-
-📦 Authentication & Storage
-Authentication
-
-Provider: Puter.js
-
-Flow:
-
-Unauthenticated users visiting protected routes are redirected to /auth.
-
-puter.auth.signIn() handles login via Puter.
-
-usePuterStore maintains session state and user info.
-
-Storage
-
-File Storage (puter.fs)
-
-Resumes (PDFs) and preview images (PNG) are uploaded and stored.
-
-Metadata Storage (puter.kv)
-
-Resume records are saved with metadata: ID, company/job info, file paths, and AI feedback.
-
-Home page fetches all resume:* entries to display past analyses.
-
-🚀 Inspired By
-
-This project was inspired by JavaScript Mastery tutorials, which provide detailed, beginner-friendly guides on building modern full-stack applications.
+If you find this project useful, please consider giving it a **star** ⭐ on GitHub!  

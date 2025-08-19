@@ -41,27 +41,27 @@ With **AI-powered feedback**, it not only provides a score but also highlights m
 ## 📸 How to Use  
 
 ### 1️⃣ Login with Puter  
-<img src="./resuAuth.JPG" alt="Login Screenshot" width="700"/>  
+<img src="./public/resuAuth.JPG" alt="Login Screenshot" width="700"/>  
 
 ---
 
 ### 2️⃣ Upload Resume  
-<img src="./resu1.JPG" alt="Upload Resume Screenshot" width="700"/>  
+<img src="./public/resu1.JPG" alt="Upload Resume Screenshot" width="700"/>  
 
 ---
 
 ### 3️⃣ Enter Company Details & JD  
-<img src="./resu2.JPG" alt="Job Description Screenshot" width="700"/>  
+<img src="./public/resu2.JPG" alt="Job Description Screenshot" width="700"/>  
 
 ---
 
 ### 4️⃣ Get ATS Score & Feedback  
-<img src="./resu3.JPG" alt="ATS Score Screenshot" width="700"/>  
+<img src="./public/resu3.JPG" alt="ATS Score Screenshot" width="700"/>  
 
 ---
 
 ### 5️⃣ Resume History & Tracking  
-<img src="./resu.JPG" alt="Resume History Screenshot" width="700"/>  
+<img src="./public/resu.JPG" alt="Resume History Screenshot" width="700"/>  
 
 ---
 

@@ -45,12 +45,12 @@ With **AI-powered feedback**, it not only provides a score but also highlights m
 
 ---
 
-### 2️⃣ Upload Resume  
+### 2️⃣ Enter Company Details, JD & Upload Resume  
 <img src="./public/resu1.JPG" alt="Upload Resume Screenshot" width="700"/>  
 
 ---
 
-### 3️⃣ Enter Company Details & JD  
+### 3️⃣ scanning - it may take some time
 <img src="./public/resu2.JPG" alt="Job Description Screenshot" width="700"/>  
 
 ---

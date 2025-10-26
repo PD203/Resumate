@@ -17,25 +17,51 @@ const Upload = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState('');
     const [file, setFile] = useState<File | null>(null);
+    const [analysisTimes, setAnalysisTimes] = useState<number[]>([]);
 
     const handleFileSelect = (file: File | null) => {
         setFile(file)
     }
 
     const handleAnalyze = async ({ companyName, jobTitle, jobDescription, file }: { companyName: string, jobTitle: string, jobDescription: string, file: File  }) => {
+        const startTime = performance.now();
         setIsProcessing(true);
 
         setStatusText('Uploading the file...');
         const uploadedFile = await fs.upload([file]);
         if(!uploadedFile) return setStatusText('Error: Failed to upload file');
 
-        setStatusText('Converting to image...');
-        const imageFile = await convertPdfToImage(file);
-        if(!imageFile.file) return setStatusText('Error: Failed to convert PDF to image');
+        // Start AI feedback
+        setStatusText('Analyzing...');
+        const feedbackPromise = ai.feedback(
+            uploadedFile.path,
+            prepareInstructions({ jobTitle, jobDescription })
+        );
 
-        setStatusText('Uploading the image...');
-        const uploadedImage = await fs.upload([imageFile.file]);
-        if(!uploadedImage) return setStatusText('Error: Failed to upload image');
+        // Start image conversion and upload
+        setStatusText('Converting to image...');
+        const imagePromise = (async () => {
+            const imageFile = await convertPdfToImage(file);
+            if(!imageFile.file) {
+                setStatusText('Error: Failed to convert PDF to image');
+                return null;
+            }
+
+            setStatusText('Uploading the image...');
+            const uploadedImage = await fs.upload([imageFile.file]);
+            if(!uploadedImage) {
+                setStatusText('Error: Failed to upload image');
+                return null;
+            }
+            return uploadedImage;
+        })();
+
+        const [feedback, uploadedImage] = await Promise.all([feedbackPromise, imagePromise]);
+
+        if (!feedback || !uploadedImage) {
+            // Error status is already set inside the promises
+            return;
+        }
 
         setStatusText('Preparing data...');
         const uuid = generateUUID();
@@ -46,15 +72,6 @@ const Upload = () => {
             companyName, jobTitle, jobDescription,
             feedback: '',
         }
-        await kv.set(`resume:${uuid}`, JSON.stringify(data));
-
-        setStatusText('Analyzing...');
-
-        const feedback = await ai.feedback(
-            uploadedFile.path,
-            prepareInstructions({ jobTitle, jobDescription })
-        )
-        if (!feedback) return setStatusText('Error: Failed to analyze resume');
 
         const feedbackText = typeof feedback.message.content === 'string'
             ? feedback.message.content
@@ -64,8 +81,14 @@ const Upload = () => {
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
         setStatusText('Analysis complete, redirecting...');
         console.log(data);
+        const endTime = performance.now();
+        const duration = endTime - startTime;
+        setAnalysisTimes(prevTimes => [...prevTimes, duration]);
+        console.log(`Analysis took ${duration.toFixed(2)} ms`);
         navigate(`/resume/${uuid}`);
     }
+
+    const averageTime = analysisTimes.length > 0 ? analysisTimes.reduce((a, b) => a + b, 0) / analysisTimes.length : 0;
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -96,6 +119,9 @@ const Upload = () => {
                         </>
                     ) : (
                         <h2>Drop your resume for an ATS score and improvement tips</h2>
+                    )}
+                    {averageTime > 0 && !isProcessing && (
+                        <p className="text-lg text-gray-500">Average analysis time: {averageTime.toFixed(2)} ms</p>
                     )}
                     {!isProcessing && (
                         <form id="upload-form" onSubmit={handleSubmit} className="flex flex-col gap-4 mt-8">

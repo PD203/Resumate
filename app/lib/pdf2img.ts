@@ -55,8 +55,8 @@ export async function convertPdfToImage(
                     if (blob) {
                         // Create a File from the blob with the same name as the pdf
                         const originalName = file.name.replace(/\.pdf$/i, "");
-                        const imageFile = new File([blob], `${originalName}.png`, {
-                            type: "image/png",
+                        const imageFile = new File([blob], `${originalName}.jpeg`, {
+                            type: "image/jpeg",
                         });
 
                         resolve({
@@ -71,9 +71,9 @@ export async function convertPdfToImage(
                         });
                     }
                 },
-                "image/png",
-                1.0
-            ); // Set quality to maximum (1.0)
+                "image/jpeg", // Changed from image/png
+                0.9 // Set quality to 0.9 for JPEG
+            );
         });
     } catch (err) {
         return {
